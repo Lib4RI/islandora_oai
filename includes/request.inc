@@ -323,7 +323,11 @@ function islandora_oai_get_record(&$writer, $args) {
           return FALSE;
         }
         break;
-
+        
+      case 'citationStyle':
+        $citation_style = $val;
+        break;
+        
       default:
         islandora_oai_add_error('badArgument', $key, $val);
         return FALSE;
@@ -349,7 +353,7 @@ function islandora_oai_get_record(&$writer, $args) {
     return FALSE;
   }
   $writer->startElement('GetRecord');
-  islandora_oai_build_record_response($writer, $record, TRUE, $metadata_prefix);
+  islandora_oai_build_record_response($writer, $record, TRUE, $metadata_prefix, $citation_style);
   $writer->endElement();
 }
 
@@ -760,7 +764,7 @@ function islandora_oai_list_id_rec(&$writer, $args, $list_rec = FALSE) {
  * @param string $metadata_prefix
  *   The metadata prefix we are searching for.
  */
-function islandora_oai_build_record_response(&$writer, $record, $full_record = FALSE, $metadata_prefix = 'oai_dc') {
+function islandora_oai_build_record_response(&$writer, $record, $full_record = FALSE, $metadata_prefix = 'oai_dc', $citation_style = FALSE) {
   $identifier = $record['pid'];
   $identifier = str_replace(':', '_', $identifier);
   $repo_id = variable_get('islandora_oai_repository_identifier', 'drupal-site.org');
@@ -798,6 +802,7 @@ function islandora_oai_build_record_response(&$writer, $record, $full_record = F
     $oai_output = call_user_func($record_xml['function'], array(
       'metadata_prefix' => $metadata_prefix,
       'pid' => $record['pid'],
+      'citation_style' => $citation_style,
     ));
     if (!empty($oai_output)) {
       $writer->startElement('metadata');

@@ -621,7 +621,11 @@ function islandora_oai_list_id_rec(&$writer, $args, $list_rec = FALSE) {
           return FALSE;
         }
         break;
-
+      
+      case 'citationStyle':
+          $citation_style = $val;
+          break;
+          
       case 'resumptionToken':
         // If a resumptionToken is present, we cannot have any other arguments.
         if (count($args) > 1) {
@@ -712,7 +716,7 @@ function islandora_oai_list_id_rec(&$writer, $args, $list_rec = FALSE) {
       $writer->startElement('ListIdentifiers');
     }
     foreach ($query_results['records'] as $record) {
-      islandora_oai_build_record_response($writer, $record, $list_rec, $metadata_prefix);
+      islandora_oai_build_record_response($writer, $record, $list_rec, $metadata_prefix, $citation_style);
     }
 
     if ($num_rows - $token->deliveredrecords > $max_records) {

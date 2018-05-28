@@ -15,7 +15,7 @@ function build_citation($content, $style_s){
         $st = [];
         foreach ($style_a as $style){
             $s = citeproc_style($style);
-            if($s){
+            if($s && (strtolower($style) != 'bibtex')){
                 array_push($st, $s);
             }
         }
@@ -31,7 +31,6 @@ function build_citation($content, $style_s){
             $citations .= $citation;
             $edited = true;
         }
-        
         if ($edited)
             $content = str_replace("</mods>", 
 "  <extension>

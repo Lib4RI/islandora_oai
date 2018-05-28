@@ -8,7 +8,7 @@ function build_citation($content, $style){
         $citation = str_replace('<div class="csl-bib-body"><div class="csl-entry">', '', $citation);
         $citation = str_replace('</div></div>', '', $citation);
         $citation = str_replace('&', '&amp;', $citation);
-        $content = str_replace("</mods>", "<citation>$citation</citation></mods>", $content);
+        $content = str_replace("</mods>", "<extension><bibliographicCitation><$style>$citation</$style></bibliographicCitation></extension></mods>", $content);
     }
     return $content;
 }

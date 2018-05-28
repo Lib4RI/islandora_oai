@@ -97,6 +97,12 @@ function islandora_oai_schema() {
         'default' => 0,
         'disp-width' => '11',
       ),
+      'citation_style' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => null,
+      ),
     ),
     'primary key' => array('id'),
   );

@@ -33,7 +33,13 @@ function build_citation($content, $style_s){
         }
         
         if ($edited)
-            $content = str_replace("</mods>", "<extension><bibliographicCitation>$citations</bibliographicCitation></extension></mods>", $content);
+            $content = str_replace("</mods>", 
+"  <extension>
+    <bibliographicCitation>
+      $citations
+    </bibliographicCitation>
+  </extension>
+</mods>", $content);
     }
     
     return $content;

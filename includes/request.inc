@@ -659,7 +659,7 @@ function islandora_oai_list_id_rec(&$writer, $args, $list_rec = FALSE) {
       return FALSE;
     }
     $metadata_prefix = $token->metadata_prefix;
-    $citation_style = $token->citation_style;
+//    $citation_style = $token->citation_style;
     $query_args = explode('#', $token->queryargs);
     $set = $token->setargs;
     if (isset($query_args) && (!empty($query_args[0]) || !empty($query_args[1]))) {
@@ -736,7 +736,7 @@ function islandora_oai_list_id_rec(&$writer, $args, $list_rec = FALSE) {
           'setargs' => isset($set) ? $set : NULL,
           'metadata_prefix' => $metadata_prefix,
           'timestamp' => time(),
-          'citation_style' => $citation_style,
+//          'citation_style' => $citation_style,
         ))
         ->execute();
 

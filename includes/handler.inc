@@ -145,9 +145,11 @@ function islandora_oai_object_response_xml($params) {
       $content = $self_xslt->transformToXML($self_input);
     }
     
-    if (($param == 'MODS') && (isset($params['citation_style']))){
+//    if (($param == 'MODS') && (isset($params['citation_style']))){
+    if ($param == 'MODS'){
         module_load_include('inc', 'islandora_oai', 'includes/full.citation');
-        $content = build_citation($content, $params['citation_style']);
+//        $content = build_citation($content, $params['citation_style']);
+        $content = build_citation($content, '1');
     }
     
     $xslt = new XSLTProcessor();

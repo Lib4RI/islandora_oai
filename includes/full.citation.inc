@@ -27,6 +27,11 @@ function build_citation($content, $style_s){
             $citation = str_replace('<div class="csl-bib-body"><div class="csl-entry">', '', $citation);
             $citation = str_replace('</div></div>', '', $citation);
             $citation = str_replace('&', '&amp;', $citation);
+            $citation = str_replace('<', '&lt;', $citation);
+            $citation = str_replace('>', '&gt;', $citation);
+//            $citation = str_replace('"', '&quot;', $citation);
+//            $citation = str_replace("'", '&apos;', $citation);
+//            $citation = "<$cstyle[name]><![CDATA[$citation]]></$cstyle[name]>";
             $citation = "<$cstyle[name]>$citation</$cstyle[name]>";
             $citations .= $citation;
             $edited = true;

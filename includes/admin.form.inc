@@ -107,7 +107,12 @@ function islandora_oai_admin_form($form, $form_state) {
     '#description' => t("A multivalued string The field in Solr that defines an object's ancestors. If left blank, Solr will recurse manually to get the child tree of a particular set. Use of this field may return a different set of children than the recursive option; it is the responsibility of the implementer to ensure the ancestors field returns an appropriate hierarchy of parents."),
     '#states' => $solr_config_states,
   );
-
+  $form['islandora_oai_configuration']['islandora_oai_citations'] = array(
+      '#type' => 'checkbox',
+      '#default_value' => variable_get('islandora_oai_citations', TRUE),
+      '#title' => t('Include citations'),
+  );
+  
   // Build up the available request handlers.
   $defined_handlers = module_invoke_all(ISLANDORA_OAI_REQUEST_HANDLER_HOOK);
   if (!empty($defined_handlers)) {
